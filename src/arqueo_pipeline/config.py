@@ -10,7 +10,7 @@ load_dotenv(RAIZ / ".env")
 def entorno(nombre: str, defecto: str = "") -> str:
 	valor = os.getenv(nombre, defecto).strip()
 	if not valor and not defecto:
-		raise RuntimeError(f"Falta {nombre} en .env")
+		raise RuntimeError(f"Falta {nombre}")
 	return valor
 
 
@@ -26,9 +26,3 @@ def dias_atras() -> int:
 def correo_prueba() -> str:
 	"""Si tiene valor, todos los avisos salen a este correo y no al del cliente."""
 	return os.getenv("CORREO_PRUEBA", "").strip()
-
-
-def ruta_estado() -> Path:
-	carpeta = RAIZ / "data"
-	carpeta.mkdir(exist_ok=True)
-	return carpeta / "enviados.sqlite"

@@ -1,2 +1,0 @@
-[console_scripts]
-arqueo-cierres = arqueo_pipeline.run:main

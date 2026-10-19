@@ -1,7 +1,6 @@
 import pandas as pd
 
 from arqueo_pipeline.run import pendientes
-from arqueo_pipeline.state import marcar_enviado, ya_enviados
 from arqueo_pipeline.transform import mensaje, pesos, resumir
 
 
@@ -50,11 +49,8 @@ def test_mensaje_nombra_el_negocio():
 	assert "Efectivo contado: $80.000" in cuerpo
 
 
-def test_no_reenvia_un_turno_ya_marcado(tmp_path):
-	ruta = tmp_path / "enviados.sqlite"
-	marcar_enviado(ruta, "t1", "dueno@ejemplo.com")
-	assert ya_enviados(ruta) == {"t1"}
-	filas = pendientes(resumir(turno(), pd.DataFrame()), ya_enviados(ruta))
+def test_no_reenvia_un_turno_ya_marcado():
+	filas = pendientes(resumir(turno(), pd.DataFrame()), {"t1"})
 	assert filas.empty
 
 

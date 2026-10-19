@@ -10,7 +10,7 @@ En el repositorio de GitHub: **Settings → Secrets and variables → Actions**.
 
 Secretos:
 
-- `DATABASE_URL`: la URL del Session pooler, la misma del `.env`
+- `DATABASE_URL`: la URL del Session pooler de Supabase
 - `SMTP_USER`
 - `SMTP_PASSWORD`: la clave de aplicación de Gmail
 - `SMTP_FROM`
@@ -19,12 +19,10 @@ Variables:
 
 - `DIAS_ATRAS` = `2`
 - `ENVIAR_CORREO` = `false` hasta ver una corrida bien. Luego `true`
-- `CORREO_PRUEBA` = tu correo mientras pruebas. Vacío cuando el aviso debe ir al dueño
+- `CORREO_PRUEBA` = correo de pruebas
 - `SMTP_HOST` = `smtp.gmail.com`
 - `SMTP_PORT` = `587`
 
 ## Probarlo
 
 **Actions → Avisar cierres → Run workflow**. Esa pantalla, con el resultado verde, es la captura del automatismo.
-
-El horario `*/15 * * * *` solo corre en la rama por defecto después de subir este archivo.
