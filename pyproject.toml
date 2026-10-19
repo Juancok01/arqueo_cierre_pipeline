@@ -1,0 +1,23 @@
+[project]
+name = "arqueo-cierre-pipeline"
+version = "0.1.0"
+description = "Avisa por correo al dueño cuando se cierra la caja en Arqueo."
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.2",
+    "psycopg[binary]>=3.2",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+arqueo-cierres = "arqueo_pipeline.run:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

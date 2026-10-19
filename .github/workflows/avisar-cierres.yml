@@ -1,0 +1,27 @@
+name: Avisar cierres
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  avisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - run: arqueo-cierres
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIAS_ATRAS: ${{ vars.DIAS_ATRAS }}
+          ENVIAR_CORREO: ${{ vars.ENVIAR_CORREO }}
+          CORREO_PRUEBA: ${{ vars.CORREO_PRUEBA }}
+          SMTP_HOST: ${{ vars.SMTP_HOST }}
+          SMTP_PORT: ${{ vars.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
